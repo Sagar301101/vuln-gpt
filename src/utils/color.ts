@@ -1,0 +1,3 @@
+export const PRIMARYCOLOR = "#0EC9AC";
+export const PRIMARYHEADLINECOLOR = "#fff";
+export const PRIMARYDESCRIPTIONCOLOR = "#828FA0";
