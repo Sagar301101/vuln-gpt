@@ -1,94 +1,275 @@
-import { Card, CardBody, CardHeader, Text, Grid, Heading, useColorModeValue, Flex } from "@chakra-ui/react";
-import { TfiServer } from "react-icons/tfi";
-import { FiMail,FiCheckCircle } from "react-icons/fi";
-import { AiOutlineAndroid } from "react-icons/ai";
-import { LuCircleDollarSign } from "react-icons/lu";
-import { IoGlobeSharp } from "react-icons/io5";
+import {
+  Text,
+  Grid,
+  useColorModeValue,
+  Flex,
+  Button,
+  Image,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  Box,
+  AccordionIcon,
+  AccordionPanel,
+} from "@chakra-ui/react";
 
+import { FaCheck } from "react-icons/fa";
 
-
-
-
-import { PRIMARYDESCRIPTIONCOLOR, PRIMARYCOLOR, PRIMARYHEADLINECOLOR } from "../../../utils/color";
 import ContentLayout from "../../common/Layout/ContentLayout";
-
-const ServiceData = [
-  {
-    id: 1,
-    label: "Web Application Pentesting",
-    icon: <IoGlobeSharp style={{ fontSize: "50px", color: "#0EC9AC" }} />,
-    details: "Web Application Pentesting identifies and fixes vulnerabilities, ensuring compliance, security, and customer trust with expert testing and detailed reporting.",
-  },
-  {
-    id: 2,
-    label: "Andriod Application Pentesting",
-    icon: <AiOutlineAndroid style={{ fontSize: "50px", color: "#0EC9AC" }} />,
-    details: "Android Application Pentesting identifies and fixes vulnerabilities, ensuring compliance, security, and user trust with expert testing and detailed reporting.",
-  },
-  {
-    id: 3,
-    label: "Cloud Cost Optimistion upto 30%",
-    icon: <LuCircleDollarSign style={{ fontSize: "50px", color: "#0EC9AC" }} />,
-    details: "Cloud Cost Optimization minimizes expenses by up to 30%, ensuring efficient resource allocation and maximizing ROI through expert analysis and tailored solutions.",
-  },
-  {
-    id: 4,
-    label: "Cloud Pentesting",
-    icon: <TfiServer style={{ fontSize: "50px", color: "#0EC9AC" }} />,
-    details: "Cloud Pentesting identifies and mitigates vulnerabilities, ensuring security and compliance in cloud environments through expert testing and comprehensive reporting.",
-  },
-  {
-    id: 5,
-    label: "Your Ultimate Application Solution",
-    icon: <FiMail style={{ fontSize: "50px", color: "#0EC9AC" }} />,
-    details: "UI/UX + Development + Deployment + QA + Security = The Complete Package",
-  },
-  {
-    id: 6,
-    label: "QA",
-    icon: <FiCheckCircle style={{ fontSize: "50px", color: "#0EC9AC" }} />,
-    details: "QA provides comprehensive testing, ensuring product quality and reliability through meticulous analysis and rigorous methodologies.",
-  },
-];
+import { useState } from "react";
+import { colors } from "../../../config/color";
+import CheckIcon from "../../../assets/services/check-icon.svg";
+import { ServiceData } from "../../../config/service.config";
 
 const Services = () => {
-  const bgColor = useColorModeValue("#011936", "#011936");
+  const [activeServiceOption, setActiveServiceOption] = useState(1);
+  const [activeService, setActiveService] = useState(1);
+
   return (
     <ContentLayout>
-      <Flex direction={"column"} gap={4} py={10} id="services">
-        <Heading size={"md"} color={useColorModeValue(PRIMARYCOLOR, PRIMARYCOLOR)} textAlign={"center"}>
-          Our Services
-        </Heading>
-        <Heading size={"xl"} color={useColorModeValue(PRIMARYHEADLINECOLOR, PRIMARYHEADLINECOLOR)} textAlign={"center"}>
-        </Heading>
-        <Grid templateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={6}>
-          {ServiceData?.map((eachData) => (
-            <Card key={eachData.id} bg={bgColor} p={1} boxShadow={"rgba(0, 0, 0, 0.34) 0px 3px 8px"}>
-              <CardHeader
-                alignSelf={"left"}
-                _hover={{
-                  transform: "translateY(-4px)",
-                }}
-              >
-                {eachData.icon}
-              </CardHeader>
-              <CardBody>
-                <Heading textAlign={"left"} size={"md"}>
-                  {eachData.label}
-                </Heading>
-                <Text
-                  textAlign={"left"}
-                  mt={2}
-                  color={useColorModeValue(PRIMARYDESCRIPTIONCOLOR, PRIMARYDESCRIPTIONCOLOR)}
-                >
-                  {eachData.details}
-                </Text>
-              </CardBody>
-            </Card>
-          ))}
-        </Grid>
+      <Text
+        fontSize={{ base: "36px", md: "48px" }}
+        fontWeight={{ base: 700, lg: 600 }}
+        textAlign={"center"}
+        mb={10}
+      >
+        Our Services
+      </Text>
+      <Flex
+        align={"center"}
+        gap={2}
+        columnGap={2}
+        justify={"center"}
+        mb={10}
+        flexWrap={"wrap"}
+        display={{ base: "none", md: "flex" }}
+      >
+        {ServiceData?.map((data) => (
+          <Flex
+            key={data?.id}
+            bgImage={useColorModeValue(
+              colors?.light?.bgImage,
+              colors.dark.bgImage
+            )}
+            rounded={"full"}
+            p={"1px"}
+          >
+            <Button
+              bg={
+                activeService !== data?.id
+                  ? useColorModeValue(
+                      colors?.light.services?.serviceBg,
+                      colors?.dark.services?.serviceBg
+                    )
+                  : ""
+              }
+              rounded={"full"}
+              onClick={() => setActiveService(data?.id)}
+            >
+              {data?.label}
+            </Button>
+          </Flex>
+        ))}
       </Flex>
+      <Grid
+        mx={{ base: 0, lg: 12 }}
+        bgImage={useColorModeValue(
+          colors?.light?.services?.bgImage,
+          colors?.dark?.services?.bgImage
+        )}
+        display={{ base: "none", md: "grid" }}
+        p={4}
+        rounded={"lg"}
+        templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
+        columnGap={8}
+      >
+        <Flex flexDir={"column"} rowGap={4}>
+          {ServiceData[activeService - 1]?.options?.map((eO) => (
+            <Button
+              key={eO?.id}
+              display={"flex"}
+              justifyContent={"start"}
+              alignItems={"center"}
+              size={"lg"}
+              px={4}
+              columnGap={4}
+              bg={
+                eO?.id === activeServiceOption
+                  ? useColorModeValue(
+                      colors?.light?.services?.activeOptionBg,
+                      colors?.dark?.services?.activeOptionBg
+                    )
+                  : useColorModeValue(
+                      colors?.light?.services?.nonActiveOptionBg,
+                      colors?.dark?.services?.nonActiveOptionBg
+                    )
+              }
+              border={
+                eO?.id === activeServiceOption
+                  ? `1px solid ${useColorModeValue(
+                      colors?.light?.services?.activeOptionColor,
+                      colors?.dark?.services?.activeOptionColor
+                    )}`
+                  : ""
+              }
+              onClick={() => setActiveServiceOption(eO?.id)}
+            >
+              <Image src={CheckIcon} alt="Checkbox" />
+              <Text fontSize={"16px"} noOfLines={1}>
+                {eO?.label}
+              </Text>
+            </Button>
+          ))}
+        </Flex>
+        <Flex flexDir={"column"} rowGap={4}>
+          {ServiceData[activeService - 1]?.options[
+            activeServiceOption - 1
+          ]?.options?.map((e) => (
+            <Grid
+              templateColumns={"1fr 11fr"}
+              alignItems={"start"}
+              key={e?.id}
+              columnGap={2}
+            >
+              <Box
+                p={2}
+                bg={useColorModeValue(
+                  colors?.light?.services?.nonActiveOptionBg,
+                  colors?.dark?.services?.nonActiveOptionBg
+                )}
+                rounded={"xl"}
+                w={8}
+              >
+                <FaCheck />
+              </Box>
+              <Text
+                fontWeight={"medium"}
+                fontSize={"16px"}
+                lineHeight={"28px"}
+                textTransform={"capitalize"}
+              >
+                {e?.label}
+              </Text>
+            </Grid>
+          ))}
+        </Flex>
+      </Grid>
+      <Box
+        bgImage={"linear-gradient(147.14deg, #73DFE7 6.95%, #0063F7 93.05%)"}
+        p={"1px"}
+        rounded={"xl"}
+        display={{ base: "block", md: "none" }}
+      >
+        <Box bg={"#14141B"} rounded={"xl"} h={"full"} p={4}>
+          <Flex
+            align={"center"}
+            w={"full"}
+            columnGap={2}
+            justify={"start"}
+            mb={10}
+            overflow={"auto"}
+            sx={{
+              scrollbarWidth: 'none', // For Firefox
+              '&::-webkit-scrollbar': {
+                display: 'none', // For Chrome, Safari, and Opera
+              },
+            }}
+          >
+            {ServiceData?.map((data) => (
+              <Flex
+                key={data?.id}
+                bgImage={useColorModeValue(
+                  colors?.light?.bgImage,
+                  colors.dark.bgImage
+                )}
+                rounded={"full"}
+                p={"1px"}
+              >
+                <Button
+                  bg={
+                    activeService !== data?.id
+                      ? useColorModeValue(
+                          colors?.light.services?.serviceBg,
+                          colors?.dark.services?.serviceBg
+                        )
+                      : ""
+                  }
+                  rounded={"full"}
+                  onClick={() => setActiveService(data?.id)}
+                >
+                  {data?.label}
+                </Button>
+              </Flex>
+            ))}
+          </Flex>
+          <Accordion defaultIndex={[0]} allowMultiple>
+            {ServiceData[activeService - 1]?.options?.map((eO, i) => (
+              <AccordionItem
+                my={4}
+                border={"none"}
+                rounded={"lg"}
+                key={eO?.id}
+                bg={useColorModeValue(
+                  colors?.light?.services?.nonActiveOptionBg,
+                  colors?.dark?.services?.nonActiveOptionBg
+                )}
+              >
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="left"
+                      alignItems={"center"}
+                      display={"flex"}
+                      columnGap={2}
+                    >
+                      <Image src={CheckIcon} alt="Checkbox" />
+                      {eO?.label}
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <Flex flexDir={"column"} rowGap={4}>
+                    {ServiceData[activeService - 1]?.options[i]?.options?.map(
+                      (e) => (
+                        <Grid
+                          templateColumns={"1fr 11fr"}
+                          alignItems={"start"}
+                          key={e?.id}
+                          columnGap={2}
+                        >
+                          <Box
+                            p={2}
+                            bg={useColorModeValue(
+                              colors?.light?.services?.nonActiveOptionBg,
+                              colors?.dark?.services?.nonActiveOptionBg
+                            )}
+                            rounded={"xl"}
+                            w={8}
+                          >
+                            <FaCheck />
+                          </Box>
+                          <Text
+                            fontWeight={"medium"}
+                            fontSize={"16px"}
+                            lineHeight={"28px"}
+                          >
+                            {e?.label}
+                          </Text>
+                        </Grid>
+                      )
+                    )}
+                  </Flex>
+                </AccordionPanel>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Box>
+      </Box>
     </ContentLayout>
   );
 };
+
 export default Services;

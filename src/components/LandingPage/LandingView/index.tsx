@@ -1,54 +1,81 @@
-import { Box, Flex, Heading, Image } from "@chakra-ui/react";
-import { TypeAnimation } from "react-type-animation";
+import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import ContentLayout from "../../common/Layout/ContentLayout";
-
-import RightSideImage from "../../../assets/landing/side-image.png"
-import FreeTrialForm from "../../common/FreeTrialForm";
+import { colors } from "../../../config/color";
+import UrlScanner from "./UrlScanner";
 
 const LandingView = () => {
   return (
-    <ContentLayout >
-      <Flex
-        justifyContent={"space-between"}
-        alignItems={"center"}
-        paddingY={20}
-        flexDirection={{ base: "column-reverse", md: "row" }}
-        gap={10}
-        id="home"
-      >
-        <Box>
-          <Flex gap={4} wordBreak={"break-all"}>
-            <Heading size={{ base: "md", md: "lg", lg: "xl", xl: "2xl" }}> Profession</Heading>
-            <Heading size={{ base: "md", md: "lg", lg: "xl", xl: "2xl" }} color={"#0EC9AC"}>
-              <TypeAnimation
-                sequence={["Company", 2000, "Security", 2000, "Protection", 2000]}
-                wrapper="span"
-                speed={10}
-                style={{ display: "inline-block" }}
-                repeat={Infinity}
-              />
-            </Heading>
-          </Flex>
+    <>
+      <ContentLayout>
+        <Flex
+          justify={"center"}
+          align={"center"}
+          direction={"column"}
+          rowGap={16}
+          pt={32}
+          top={2}
+        >
+          <Flex
+            justify={"center"}
+            align={"center"}
+            direction={"column"}
+            maxW={"2xl"}
+          >
+            <Text
+              fontSize={{
+                xl: "56px",
+                base: "36px",
+              }}
+              fontWeight={"bold"}
+              wordBreak={"break-word"}
+              textAlign={"center"}
+            >
+              Professional{" "}
+              <span
+                style={{
+                  display: "inline-block",
+                  backgroundImage: useColorModeValue(
+                    colors.light.landgingView.animatedText,
+                    colors.dark.landgingView.animatedText
+                  ),
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                Security
+              </span>
+              With Reliable Service
+            </Text>
 
-          <Heading size={{ base: "md", md: "lg", lg: "xl", xl: "2xl" }} lineHeight={1.5}>
-            With Reliable Service
-          </Heading>
-          <p style={{ color: "#828FA0" }}>
-          Your trusted partner in web, Android, API, and cloud security. We provide comprehensive services to safeguard your digital assets, ensuring robust protection across all platforms.{" "}
-          </p>
-          <Flex mt={4}>
-          <FreeTrialForm label="Contact us" isIcon={false} />
+            <Text
+              textAlign={"center"}
+              fontSize={{
+                base: "16px",
+                lg: "18px",
+              }}
+              color={useColorModeValue(
+                colors.light.landgingView.description,
+                colors.dark.landgingView.description
+              )}
+            >
+              Your trusted partner in web, Android, API, and cloud security. We
+              provide comprehensive services to safeguard your digital assets,
+              ensuring robust protection across all platforms.
+            </Text>
           </Flex>
-        </Box>
-        <Flex justifyContent={"center"} alignItems={"center"}>
-          <Image
-            src={RightSideImage}
-            alt="security"
-            width={{ base: "60%", sm: "80%", md: "100%" }}
-          />
+          <UrlScanner />
         </Flex>
-      </Flex>
-    </ContentLayout>
+      </ContentLayout>
+      <Box w={"full"} overflow={"hidden"} mt={0}>
+      <Box
+        borderRadius={"0 0 50% 50%/0 0 100% 100%"}
+        h={60}
+        w={"full"}
+        bg={useColorModeValue(colors.light.globalBg, colors.dark.globalBg)}
+        transform={"scaleX(1.5)"}
+      ></Box>
+      </Box>
+    </>
   );
 };
 export default LandingView;

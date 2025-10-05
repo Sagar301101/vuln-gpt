@@ -1,23 +1,24 @@
 import { lazy } from "react";
-import Latestnews from "../components/LandingPage/LatestNews";
-import NewsLetter from "../components/LandingPage/NewsLetter";
-import FreeTrial from "../components/LandingPage/FreeTrial";
+import FreeDemo from "../components/LandingPage/FreeDemo";
+import Reviews from "../components/LandingPage/Reviews";
+import Pricing from "../components/LandingPage/Pricing";
+const NewsLetters = lazy(() => import("../components/LandingPage/NewsLetters"));
 
 const LandingView = lazy(() => import("../components/LandingPage/LandingView"));
 const Services = lazy(() => import("../components/LandingPage/Services"));
-const Products=lazy(()=>import("../components/LandingPage/Products"))
-const About = lazy(()=>import("../components/LandingPage/About"))
+const Products = lazy(() => import("../components/LandingPage/Products"));
 
 const LandingPage = () => {
   return (
     <>
       <LandingView />
-      <About />
       <Products />
+
       <Services />
-      <FreeTrial />
-      <Latestnews />
-      <NewsLetter />
+      <Pricing />
+      <Reviews />
+      <NewsLetters />
+      <FreeDemo />
     </>
   );
 };

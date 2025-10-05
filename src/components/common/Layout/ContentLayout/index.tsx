@@ -1,6 +1,8 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
+import { colors } from "../../../../config/color";
+import { CSSProperties } from "react";
 
-const ContentLayout = ({ children }: { children: React.ReactNode }) => {
+const ContentLayout = ({ children ,style}: { children: React.ReactNode,style?:CSSProperties }) => {
   return (
     <Box
       px={{
@@ -9,6 +11,8 @@ const ContentLayout = ({ children }: { children: React.ReactNode }) => {
         md: 10,
         lg: 20,
       }}
+      bg={useColorModeValue(colors?.light.globalBg,colors?.dark.globalBg)}
+      style={style}
     >
       {children}
     </Box>

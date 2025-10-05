@@ -5,7 +5,9 @@ const connection = require("./config/db");
 const cors = require("cors");
 dotenv.config();
 const server = express();
-server.use(cors());
+server.use(cors({
+  origin: process.env.CORS_ORIGIN?.split(','),
+}));
 server.use(express.json());
 server.use("/user", app);
 
@@ -21,5 +23,6 @@ server.listen(PORT, async (req, res) => {
   try {
     await connection;
     console.log(`connection to server at PORT ${PORT} and connected to DB`);
+    console.log(`Server is running on http://localhost:${PORT}`);
   } catch (error) {}
 });

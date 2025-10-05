@@ -51,7 +51,7 @@ const ModalWrapper = ({ children }: { children: ReactNode }) => {
   ];
 
   useEffect(() => {
-    onOpen();
+    // onOpen();
   }, []);
   return (
     <>

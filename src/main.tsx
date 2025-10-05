@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import "./indes.css";
 import theme from "./config/theme.ts";
 
+
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>

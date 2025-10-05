@@ -3,6 +3,7 @@ const axios = require("axios");
 const DomainModel = require("../models/domain.models");
 const DetailModel = require("../models/details.models");
 const urlValidator = require("../middleware/validation.middleware");
+const validateGoogleCaptcha = require("../middleware/validation.captcha");
 const app = express.Router();
 
 app.post("/DomainDetials", urlValidator, async (req, res) => {
@@ -19,16 +20,17 @@ app.post("/DomainDetials", urlValidator, async (req, res) => {
   }
 });
 
-app.post("/userDetials", async (req, res) => {
+app.post("/userDetials", validateGoogleCaptcha,urlValidator,  async (req, res) => {
   try {
     const userDetials = req.body;
     const user = new DetailModel(userDetials);
     await user.save();
-    res.status(200).send({ msg: "user detials save " });
+    console.info("Data saved successfully.")
+    res.status(200).json({ msg: "User details saved successfully" });
   } catch (error) {
-    res
-      .status(400)
-      .send({ msg: "something went wrong unable to fetch Details" });
+    console.error("Error while storing user details:", error);
+    res.status(500).json({ msg: "Something went wrong, unable to save details" });
   }
 });
+
 module.exports = app;
