@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import { RouterProvider } from "react-router-dom";
-import theme from "./theme";
-import { router } from "./router";
-import "./index.css";
+import Routes from "./Routes.tsx";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter } from "react-router-dom";
+import "./indes.css";
+import theme from "./config/theme.ts";
+
+
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-    <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ChakraProvider>
-  </React.StrictMode>,
+    <BrowserRouter>
+      <ChakraProvider theme={theme}>
+          <Routes />
+      </ChakraProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );

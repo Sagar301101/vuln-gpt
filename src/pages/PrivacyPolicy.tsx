@@ -1,103 +1,177 @@
-import { LegalH2, LegalLi, LegalP, LegalPage, LegalUl } from "@/components/layout/LegalPage";
-import { Link } from "@chakra-ui/react";
+import {
+  Box,
+  Grid,
+  Heading,
+  Text,
+  UnorderedList,
+  ListItem,
+} from "@chakra-ui/react";
+import ContentLayout from "../components/common/Layout/ContentLayout";
 
-export default function PrivacyPolicy() {
+const PrivacyPolicy = () => {
+  const policy = [
+    {
+      heading: "Introduction",
+      description: `Vulnshileds Consulting Private Limited ("we," "our," or "us") is
+              committed to protecting your privacy. This Privacy Policy explains
+              how we collect, use, disclose, and safeguard your information when
+              you visit our website. Please read this Privacy Policy carefully.
+              If you do not agree with the terms of this Privacy Policy, please
+              do not access the site.`,
+      subHeadings: [],
+    },
+    {
+      heading: "Information We Collect",
+      description: `We may collect information about you in a variety of ways. The
+              information we may collect on the Site includes:`,
+      subHeadings: [
+        {
+          heading: "Personal Data",
+          description: `Personally identifiable
+              information, such as your name, shipping address, email address,
+              and telephone number, and demographic information, such as your
+              age, gender, hometown, and interests, that you voluntarily give to
+              us when you register with the Site or when you choose to
+              participate in various activities related to the Site, such as
+              online chat and message boards.`,
+        },
+        {
+          heading: "Derivative Data",
+          description: `Information our servers
+              automatically collect when you access the Site, such as your IP
+              address, your browser type, your operating system, your access
+              times, and the pages you have viewed directly before and after
+              accessing the Site.`,
+        },
+        {
+          heading: "Financial Data",
+          description: `Financial information, such as
+              data related to your payment method (e.g., valid credit card
+              number, card brand, expiration date) that we may collect when you
+              purchase, order, return, exchange, or request information about
+              our services from the Site.`,
+        },
+      ],
+    },
+    {
+      heading: "Use of Your Information",
+      description: ` We may use information collected about you via the Site to`,
+      subHeadings: [],
+      options: [
+        `Compile anonymous statistical data and analysis for use
+              internally or with third parties.`,
+        `Deliver targeted advertising, coupons, newsletters, and other
+              information regarding promotions and the Site to you.`,
+        `Increase the efficiency and operation of the Site.`,
+        `Monitor and analyze usage and trends to improve your experience
+              with the Site.`,
+        `Notify you of updates to the Site.`,
+        `Offer new products, services, and/or recommendations to you.`,
+        `Perform other business activities as needed.`,
+      ],
+    },
+    {
+      heading: "Disclosure of Your Information",
+      description: `We may share information we have collected about you in certain
+              situations. Your information may be disclosed as follows:`,
+      subHeadings: [
+        {
+          heading: "By Law or to Protect Rights",
+          description: `If we believe the
+              release of information about you is necessary to respond to legal
+              process, to investigate or remedy potential violations of our
+              policies, or to protect the rights, property, and safety of
+              others, we may share your information as permitted or required by
+              any applicable law, rule, or regulation.`,
+        },
+        {
+          heading: "Third-Party Service Providers",
+          description: `We may share your
+              information with third parties that perform services for us or on
+              our behalf, including payment processing, data analysis, email
+              delivery, hosting services, customer service, and marketing
+              assistance.`,
+        },
+        {
+          heading: "Business Transfers",
+          description: `We may share or transfer your
+              information in connection with, or during negotiations of, any
+              merger, sale of company assets, financing, or acquisition of all
+              or a portion of our business to another company.`,
+        },
+      ],
+    },
+    {
+      heading: "Security of Your Information",
+      description: `We use administrative, technical, and physical security measures
+              to help protect your personal information. While we have taken
+              reasonable steps to secure the personal information you provide to
+              us, please be aware that no security measures are perfect or
+              impenetrable, and no method of data transmission can be guaranteed
+              against any interception or other type of misuse.`,
+      subHeadings: [],
+    },
+    {
+      heading: "Policy for Children",
+      description: `We do not knowingly solicit information from or market to children
+              under the age of 13. If we learn that we have collected
+              information from a child under age 13 without verification of
+              parental consent, we will delete that information as quickly as
+              possible. If you become aware of any data we have collected from
+              children under age 13, please contact us.`,
+      subHeadings: [],
+    },
+    {
+      heading: "Changes to This Privacy Policy",
+      description: `We may update this Privacy Policy from time to time in order to
+              reflect changes to our practices or for other operational, legal,
+              or regulatory reasons.`,
+      subHeadings: [],
+    },
+  ];
   return (
-    <LegalPage title="Privacy Policy" updated="June 28, 2024">
-      <LegalP>
-        VulnShields ("VulnShields", "we", "us", "our") provides AI-assisted vulnerability
-        assessment, penetration testing, DevOps and development services, along with a dashboard
-        for managing projects, scans, API keys, team access and billing (the "Services"). This
-        Privacy Policy explains what data we collect, why we collect it, and how it's handled when
-        you use our website or Services.
-      </LegalP>
+    <>
+      <ContentLayout>
+        <Box mx={"auto"} maxW={"xl"} my={10}>
+          <Heading as="h1" size="xl" mb={6}>
+            Privacy Policy
+          </Heading>
 
-      <LegalH2>1. Information we collect</LegalH2>
-      <LegalP>We collect information in three ways:</LegalP>
-      <LegalUl>
-        <LegalLi>
-          <strong>Account &amp; billing data</strong> — name, work email, company name, and payment
-          details when you create an account, subscribe to a plan, or contact sales.
-        </LegalLi>
-        <LegalLi>
-          <strong>Scan &amp; project data</strong> — target assets you submit for testing (domains,
-          IPs, repositories, API specs), scan configurations, and the findings, reports and logs our
-          scanners and engineers generate from them.
-        </LegalLi>
-        <LegalLi>
-          <strong>Usage data</strong> — device, browser, IP address, pages visited, and interactions
-          with the site and dashboard, collected automatically via cookies and similar technologies.
-        </LegalLi>
-      </LegalUl>
-
-      <LegalH2>2. How we use your information</LegalH2>
-      <LegalUl>
-        <LegalLi>To deliver, run and report on security assessments, scans and engagements.</LegalLi>
-        <LegalLi>To operate your account, dashboard, API keys and team access controls.</LegalLi>
-        <LegalLi>To process payments and manage subscriptions.</LegalLi>
-        <LegalLi>To send service notices, scan results, and — where you've opted in — product updates.</LegalLi>
-        <LegalLi>To monitor, secure and improve our Services, including detecting abuse.</LegalLi>
-      </LegalUl>
-
-      <LegalH2>3. Handling of scan and assessment data</LegalH2>
-      <LegalP>
-        Target and vulnerability data you submit is treated as confidential. It is used solely to
-        perform the engagement or scan you requested, is accessible only to the engineers and
-        systems needed to deliver it, and is never sold or used to train third-party models without
-        your written consent. Reports and findings are retained only as long as needed to support
-        your account, remediation and audit history, or as required by law.
-      </LegalP>
-
-      <LegalH2>4. Sharing of information</LegalH2>
-      <LegalP>We do not sell your personal data. We share information only with:</LegalP>
-      <LegalUl>
-        <LegalLi>Infrastructure, hosting and payment-processing providers bound by confidentiality obligations.</LegalLi>
-        <LegalLi>Team members you invite into your organization's workspace.</LegalLi>
-        <LegalLi>Authorities, when required by law or to protect the rights and safety of VulnShields or others.</LegalLi>
-      </LegalUl>
-
-      <LegalH2>5. Data security</LegalH2>
-      <LegalP>
-        We apply encryption in transit and at rest, role-based access controls, API key scoping,
-        and regular internal security reviews to protect data on our own platform — the same
-        standards we hold our clients to.
-      </LegalP>
-
-      <LegalH2>6. Cookies</LegalH2>
-      <LegalP>
-        We use essential cookies to keep you signed in and to remember dashboard preferences, and
-        limited analytics cookies to understand product usage. You can control cookies through your
-        browser settings.
-      </LegalP>
-
-      <LegalH2>7. Data retention</LegalH2>
-      <LegalP>
-        We retain account and billing data for as long as your account is active, and scan/report
-        data for the period agreed in your engagement or plan. You may request earlier deletion
-        subject to any legal or contractual retention requirements.
-      </LegalP>
-
-      <LegalH2>8. Your rights</LegalH2>
-      <LegalP>
-        Depending on your location, you may have the right to access, correct, export or delete your
-        personal data, and to withdraw consent to marketing communications. To exercise these
-        rights, contact us using the details below.
-      </LegalP>
-
-      <LegalH2>9. Changes to this policy</LegalH2>
-      <LegalP>
-        We may update this Privacy Policy from time to time. Material changes will be posted on this
-        page with an updated "Last updated" date.
-      </LegalP>
-
-      <LegalH2>10. Contact us</LegalH2>
-      <LegalP>
-        Questions about this Privacy Policy or your data can be sent to{" "}
-        <Link href="mailto:support@vulnshields.net" color="brand.green">
-          support@vulnshields.net
-        </Link>
-        .
-      </LegalP>
-    </LegalPage>
+          <Box mb={8}>
+            {policy?.map((each, index) => (
+              <Box mb={8} key={index}>
+                <Text size="xl" mb={4} fontWeight={"bold"}>
+                  {index + 1}. {each?.heading}
+                </Text>
+                <Text mb={4} fontSize={"sm"} color={"gray.300"}>
+                  {each?.description}
+                </Text>
+                {each?.subHeadings?.map(
+                  (eS: { heading: string; description: string }, index) => (
+                    <Grid
+                      key={index}
+                      gridTemplateColumns={"3fr 7fr"}
+                      fontSize={"sm"}
+                    >
+                      <Text size={"sm"} w={"full"} fontWeight={"bold"}>
+                        {eS?.heading}:
+                      </Text>
+                      <Text color={"gray.300"}>{eS?.description}</Text>
+                    </Grid>
+                  )
+                )}
+                <UnorderedList>
+                  {each?.options?.map((item: string, index: number) => (
+                    <ListItem key={index} fontSize={"sm"} color={"gray.300"}>{item}</ListItem>
+                  ))}
+                </UnorderedList>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </ContentLayout>
+    </>
   );
-}
+};
+
+export default PrivacyPolicy;
