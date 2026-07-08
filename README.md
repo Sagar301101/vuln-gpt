@@ -1,4 +1,4 @@
-# VulnShields — Marketing Site + Dashboard 
+# VulnShields — Marketing Site + Dashboard
 
 Production-ready front end for **VulnShields**, built from the design handoff.
 
