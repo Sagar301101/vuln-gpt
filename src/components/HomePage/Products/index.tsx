@@ -6,6 +6,7 @@ import { Section } from "@/components/layout/Section";
 import { Reveal } from "@/components/layout/Reveal";
 import { AnimatedGradientBg } from "@/components/layout/AnimatedGradientBg";
 import { SectionHeading, Chip, GradientText } from "@/components/common/primitives";
+import { Carousel } from "@/components/common/Carousel";
 import { PRODUCTS, type Product } from "@/constant/products.constant";
 import { useDemoModal } from "@/context/DemoModalContext";
 
@@ -235,7 +236,16 @@ export function Products() {
             subtitle="Three products built by our team — from a browser-native testing suite to AI secret scanning and real-time intelligence."
           />
         </Reveal>
-        <Grid templateColumns={{ base: "1fr", md: "repeat(3,1fr)" }} gap="22px" mt="48px">
+        <Box display={{ base: "block", lg: "none" }} mt="48px">
+          <Carousel>
+            {PRODUCTS.map((p, i) => (
+              <Reveal key={p.id} delay={i * 0.08}>
+                <ProductCard product={p} />
+              </Reveal>
+            ))}
+          </Carousel>
+        </Box>
+        <Grid display={{ base: "none", lg: "grid" }} templateColumns="repeat(3,1fr)" gap="22px" mt="48px">
           {PRODUCTS.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.08}>
               <ProductCard product={p} />

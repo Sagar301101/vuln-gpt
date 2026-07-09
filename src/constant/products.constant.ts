@@ -70,6 +70,6 @@ export const PRODUCTS: Product[] = [
     accent: "green",
     ctaLabel: "See JanPlus",
     ctaColor: "#67D093",
-    features: ["60s detection", "22+ languages", "Audit-clean", "Human approval"],
+    features: ["60s detection", "22+ languages", "Audit-clean", "Human approval", "24/7 monitoring"],
   },
 ];
