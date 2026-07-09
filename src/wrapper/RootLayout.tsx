@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { Outlet, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef, type RefObject } from "react";
 import { AmbientBg } from "@/components/layout/AmbientBg";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -26,14 +26,37 @@ function ScrollManager() {
   return null;
 }
 
+/**
+ * Measures the live height of the sticky promo-banner + nav header and
+ * publishes it as a CSS var, so anchor-scroll offsets (scroll-margin-top /
+ * scroll-padding-top) always clear it exactly instead of relying on a
+ * guessed static value that drifts when the banner's content changes.
+ */
+function useStickyHeaderHeightVar(ref: RefObject<HTMLDivElement>) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const setVar = () => {
+      document.documentElement.style.setProperty("--sticky-header-h", `${el.offsetHeight}px`);
+    };
+    setVar();
+    const observer = new ResizeObserver(setVar);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [ref]);
+}
+
 /** Marketing shell: ambient bg + sticky promo banner/nav + routed page + footer. */
 export function RootLayout() {
+  const stickyHeaderRef = useRef<HTMLDivElement>(null);
+  useStickyHeaderHeightVar(stickyHeaderRef);
+
   return (
     <DemoModalProvider>
       <Box position="relative" minH="100vh">
         <AmbientBg />
         <ScrollManager />
-        <Box position="sticky" top={0} zIndex={50}>
+        <Box ref={stickyHeaderRef} position="sticky" top={0} zIndex={50}>
           <PromoBanner />
           <Nav />
         </Box>

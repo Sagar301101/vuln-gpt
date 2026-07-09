@@ -28,6 +28,7 @@ export function Carousel({ children, itemMinW = "82%", gap = "16px" }: CarouselP
       <Flex
         ref={scrollerRef}
         overflowX="auto"
+        overflowY="hidden"
         alignItems="stretch"
         gap={gap}
         pb="4px"

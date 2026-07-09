@@ -89,10 +89,18 @@ function ProductCard({ product }: { product: Product }) {
       borderRadius="22px"
       p="30px"
       transition="all .25s ease"
-      _hover={{
-        transform: "translateY(-6px) scale(1.02)",
-        borderColor: hoverBorder,
-        boxShadow: `0 28px 70px ${glowSoft}`,
+      sx={{
+        // Hover-lift only on devices with real hover (mouse) — on touch,
+        // scrolling/dragging across a card can leave :hover "stuck" active,
+        // which pops the card up (scale + translate) and makes it visually
+        // clip against neighboring cards mid-scroll.
+        "@media (hover: hover) and (pointer: fine)": {
+          "&:hover": {
+            transform: "translateY(-6px) scale(1.02)",
+            borderColor: hoverBorder,
+            boxShadow: `0 28px 70px ${glowSoft}`,
+          },
+        },
       }}
     >
       {/* top accent bar */}

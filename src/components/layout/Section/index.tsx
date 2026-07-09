@@ -26,7 +26,7 @@ export function Section({
       position="relative"
       px={layout.px}
       py={py ?? layout.sectionY}
-      scrollMarginTop="92px"
+      scrollMarginTop="var(--sticky-header-h, 92px)"
       {...rest}
     >
       <Box maxW={innerMaxW} mx="auto">

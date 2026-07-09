@@ -174,6 +174,38 @@ export const SERVICES: Record<string, ServiceTab> = {
       },
     ],
   },
+  devops: {
+    id: "devops",
+    label: "DevOps Services",
+    subs: [
+      {
+        id: "devops-core",
+        label: "DevOps Services",
+        checks: [
+          "CI/CD pipeline design & automation",
+          "Infrastructure as Code (Terraform / Pulumi)",
+          "Container & Kubernetes hardening",
+          "Observability, alerting & DevSecOps",
+        ],
+      },
+    ],
+  },
+  development: {
+    id: "development",
+    label: "Development Services",
+    subs: [
+      {
+        id: "development-core",
+        label: "Development Services",
+        checks: [
+          "Web & mobile application development",
+          "Secure API & backend architecture",
+          "UI/UX design & product engineering",
+          "Code review & secure SDLC",
+        ],
+      },
+    ],
+  },
 };
 
-export const SERVICE_ORDER = ["web", "cloud", "mobile"] as const;
+export const SERVICE_ORDER = ["web", "cloud", "mobile", "devops", "development"] as const;

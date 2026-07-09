@@ -21,7 +21,13 @@ function BlogCard({ post }: { post: (typeof BLOG_POSTS)[number] }) {
       borderRadius="20px"
       overflow="hidden"
       transition="all .25s ease"
-      _hover={{ borderColor: "rgba(47,191,112,0.4)", transform: "translateY(-4px) scale(1.02)" }}
+      sx={{
+        // Hover-lift only where real hover exists — on touch, scrolling over
+        // a card can leave :hover stuck active, popping it up mid-scroll.
+        "@media (hover: hover) and (pointer: fine)": {
+          "&:hover": { borderColor: "rgba(47,191,112,0.4)", transform: "translateY(-4px) scale(1.02)" },
+        },
+      }}
     >
       <BlogThumb gradient={post.gradient} />
       <Box p="24px">

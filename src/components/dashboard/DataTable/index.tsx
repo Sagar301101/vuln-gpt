@@ -34,7 +34,7 @@ export function DataTable<Row>({
     .join(" ");
 
   return (
-    <Box overflowX="auto" mx={{ base: "-4px", md: 0 }}>
+    <Box overflowX="auto" overflowY="hidden" mx={{ base: "-4px", md: 0 }}>
       <Box minW={minWidth}>
         {/* header */}
         <Box

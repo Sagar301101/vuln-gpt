@@ -37,85 +37,110 @@ const socials = [
   { label: "Instagram", icon: Instagram, to: "#" },
 ];
 
+function BrandBlock() {
+  return (
+    <Box>
+      <Box mb="16px">
+        <Logo />
+      </Box>
+      <Text fontSize="14px" color="wa.50" lineHeight="1.6" maxW="300px" mb="20px">
+        Professional security with reliable service. Security, DevOps and Development under one
+        roof.
+      </Text>
+      <Flex gap="12px">
+        {socials.map(({ label, icon: Icon, to }) => (
+          <Link
+            key={label}
+            href={to}
+            isExternal={to !== "#"}
+            aria-label={label}
+            w="38px"
+            h="38px"
+            borderRadius="10px"
+            border="1px solid"
+            borderColor="wa.12"
+            display="grid"
+            placeItems="center"
+            color="wa.70"
+            _hover={{ color: "white", borderColor: "wa.18" }}
+          >
+            <Icon size={17} />
+          </Link>
+        ))}
+      </Flex>
+    </Box>
+  );
+}
+
+function LinkColumn({ col }: { col: (typeof columns)[number] }) {
+  return (
+    <Box>
+      <Text
+        fontSize="13px"
+        letterSpacing="1px"
+        color="wa.40"
+        mb="16px"
+        textTransform="uppercase"
+      >
+        {col.title}
+      </Text>
+      <Stack spacing="11px">
+        {col.links.map((l) =>
+          l.external ? (
+            <Link
+              key={l.label}
+              href={l.to}
+              isExternal
+              fontSize="14px"
+              color="wa.65"
+              _hover={{ color: "white" }}
+            >
+              {l.label}
+            </Link>
+          ) : (
+            <Link
+              key={l.label}
+              as={RouterLink}
+              to={l.to}
+              fontSize="14px"
+              color="wa.65"
+              _hover={{ color: "white" }}
+            >
+              {l.label}
+            </Link>
+          ),
+        )}
+      </Stack>
+    </Box>
+  );
+}
+
 export function Footer() {
   return (
     <Box as="footer" borderTop="1px solid" borderColor="wa.7" pt="56px" pb="36px" px={layout.px}>
+      {/* mobile/tablet: brand block full width, link columns as a compact 2-up grid below */}
+      <Box display={{ base: "block", lg: "none" }} maxW={layout.maxW} mx="auto">
+        <Box mb="36px">
+          <BrandBlock />
+        </Box>
+        <Grid templateColumns="1fr 1fr" columnGap="24px" rowGap="32px">
+          {columns.map((col) => (
+            <LinkColumn key={col.title} col={col} />
+          ))}
+        </Grid>
+      </Box>
+
+      {/* desktop: single 4-column row */}
       <Grid
+        display={{ base: "none", lg: "grid" }}
         maxW={layout.maxW}
         mx="auto"
-        templateColumns={{ base: "1fr", sm: "1fr 1fr", lg: "1.4fr 1fr 1fr 1fr" }}
+        templateColumns="1.4fr 1fr 1fr 1fr"
         gap="40px"
       >
-        <Box>
-          <Box mb="16px">
-            <Logo />
-          </Box>
-          <Text fontSize="14px" color="wa.50" lineHeight="1.6" maxW="300px" mb="20px">
-            Professional security with reliable service. Security, DevOps and Development under one
-            roof.
-          </Text>
-          <Flex gap="12px">
-            {socials.map(({ label, icon: Icon, to }) => (
-              <Link
-                key={label}
-                href={to}
-                isExternal={to !== "#"}
-                aria-label={label}
-                w="38px"
-                h="38px"
-                borderRadius="10px"
-                border="1px solid"
-                borderColor="wa.12"
-                display="grid"
-                placeItems="center"
-                color="wa.70"
-                _hover={{ color: "white", borderColor: "wa.18" }}
-              >
-                <Icon size={17} />
-              </Link>
-            ))}
-          </Flex>
-        </Box>
-
+        <BrandBlock />
         {columns.map((col) => (
-          <Box key={col.title}>
-            <Text
-              fontSize="13px"
-              letterSpacing="1px"
-              color="wa.40"
-              mb="16px"
-              textTransform="uppercase"
-            >
-              {col.title}
-            </Text>
-            <Stack spacing="11px">
-              {col.links.map((l) =>
-                l.external ? (
-                  <Link
-                    key={l.label}
-                    href={l.to}
-                    isExternal
-                    fontSize="14px"
-                    color="wa.65"
-                    _hover={{ color: "white" }}
-                  >
-                    {l.label}
-                  </Link>
-                ) : (
-                  <Link
-                    key={l.label}
-                    as={RouterLink}
-                    to={l.to}
-                    fontSize="14px"
-                    color="wa.65"
-                    _hover={{ color: "white" }}
-                  >
-                    {l.label}
-                  </Link>
-                ),
-              )}
-            </Stack>
-          </Box>
+          <LinkColumn key={col.title} col={col} />
         ))}
       </Grid>
 
