@@ -53,7 +53,7 @@ export function RootLayout() {
 
   return (
     <DemoModalProvider>
-      <Box position="relative" minH="100vh">
+      <Box position="relative" minH="100vh" overflowX="clip">
         <AmbientBg />
         <ScrollManager />
         <Box ref={stickyHeaderRef} position="sticky" top={0} zIndex={50}>

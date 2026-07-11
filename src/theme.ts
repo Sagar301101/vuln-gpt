@@ -97,13 +97,11 @@ const theme = extendTheme({
       html: {
         scrollBehavior: "smooth",
         scrollPaddingTop: "var(--sticky-header-h, 92px)",
-        overflowX: "hidden",
       },
       body: {
         bg: colors.bg,
         color: "white",
         WebkitFontSmoothing: "antialiased",
-        overflowX: "hidden",
         maxWidth: "100vw",
       },
       "::selection": { background: "rgba(123,108,246,0.4)" },
