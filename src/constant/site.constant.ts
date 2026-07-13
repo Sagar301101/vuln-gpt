@@ -94,6 +94,11 @@ export type BlogPost = {
   gradient: string;
   date: string;
   readMins: number;
+  /** Optional card thumbnail (e.g. "/images/blogs/thumbnail/..."); falls back to the gradient thumb when absent. */
+  thumbnail?: string;
+  /** Optional hero banner shown on the post page (e.g. "/images/blogs/banner/..."); falls back to `thumbnail`, then the gradient. */
+  banner?: string;
+  author?: string;
 };
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -102,20 +107,25 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "GUIDE",
     categoryColor: "#9CE1B6",
     title: "OWASP Top 10 in 2026: what changed",
-    excerpt: "A practical walkthrough of the latest risks and how to test for them.",
+    excerpt: "OWASP A02:2025 Security Misconfiguration explained — XXE, exposed actuators, open buckets, bad headers — with vulnerable code, fixes, detection and bounty tips.",
     gradient: "linear-gradient(135deg,rgba(47,191,112,0.25),rgba(123,108,246,0.25))",
     date: "Jun 24, 2026",
-    readMins: 8,
+    readMins: 20,
+    thumbnail: "/images/blogs/thumbnail/owasp-top-10-2026.png",
+    banner: "/images/blogs/banner/owasp-top-10-2026.png",
   },
   {
     slug: "shifting-security-left-cicd",
     category: "DEVSECOPS",
     categoryColor: "#9D8CFF",
-    title: "Shifting security left in your CI/CD",
-    excerpt: "Bake scanning into every pull request without slowing your team down.",
+    title: "Shifting Security Left in Your CI/CD Pipeline: A Practical DevSecOps Guide",
+    excerpt: "Learn how to integrate security into every stage of your CI/CD pipeline using DevSecOps best practices.",
     gradient: "linear-gradient(135deg,rgba(123,108,246,0.25),rgba(47,191,112,0.2))",
-    date: "Jun 10, 2026",
-    readMins: 6,
+    date: "Jul 13, 2026",
+    readMins: 12,
+    thumbnail: "/images/blogs/thumbnail/shift-left-security.png",
+    banner: "/images/blogs/banner/shift-left-security.png",
+    author: "VulnShields Research Team",
   },
   {
     slug: "ai-in-offensive-testing",

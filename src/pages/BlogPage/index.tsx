@@ -210,7 +210,7 @@ export default function BlogPage() {
                   transition="all .25s ease"
                   _hover={{ borderColor: "rgba(47,191,112,0.4)", transform: "translateY(-4px) scale(1.02)" }}
                 >
-                  <BlogThumb gradient={post.gradient} h="160px" />
+                  <BlogThumb gradient={post.gradient} image={post.thumbnail} alt={post.title} h="160px" />
                   <Box p="24px">
                     <Flex justify="space-between" align="center" mb="10px">
                       <Text fontSize="11px" letterSpacing="1px" color={post.categoryColor}>
