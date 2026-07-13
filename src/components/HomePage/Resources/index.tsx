@@ -29,7 +29,7 @@ function BlogCard({ post }: { post: (typeof BLOG_POSTS)[number] }) {
         },
       }}
     >
-      <BlogThumb gradient={post.gradient} />
+      <BlogThumb gradient={post.gradient} image={post.thumbnail} alt={post.title} />
       <Box p="24px">
         <Text fontSize="11px" letterSpacing="1px" color={post.categoryColor}>
           {post.category}
