@@ -16,6 +16,9 @@ export function Reveal({
 }) {
   return (
     <motion.div
+      // minWidth 0 overrides the browser's grid/flex-item default of "auto" — without it, a wide
+      // un-shrinkable child (e.g. a large image) forces the whole track past the viewport.
+      style={{ minWidth: 0 }}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}
