@@ -232,7 +232,7 @@ export default function BlogPostPage() {
       <Section innerMaxW={layout.maxW} py={{ base: "40px", md: "64px" }}>
         <Grid templateColumns={{ base: "1fr", lg: "300px 1fr" }} gap={{ base: "32px", lg: "56px" }}>
           {/* sidebar: all articles, current one highlighted */}
-          <Box display={{ base: "none", lg: "block" }}>
+          <Box display={{ base: "none", lg: "block" }} minW={0}>
             <Box position="sticky" top="calc(var(--sticky-header-h, 92px) + 24px)">
               <IconButton
                 as={RouterLink}
@@ -278,7 +278,9 @@ export default function BlogPostPage() {
           </Box>
 
           {/* article content */}
-          <Box maxW="760px">
+          {/* minW=0 overrides the grid item's default min-width:auto — without it, a wide child
+              (banner image, a long code line) forces the whole column past the viewport on mobile. */}
+          <Box maxW="760px" minW={0}>
             {/* mobile: back button (sidebar is desktop-only) */}
             <IconButton
               as={RouterLink}
